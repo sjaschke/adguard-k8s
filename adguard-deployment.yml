@@ -17,21 +17,18 @@ spec:
       - name: adguard-home
         image: adguard/adguardhome:latest
         resources:
+          requests:
+            memory: "200Mi"
+            cpu: "200m"
           limits:
-            cpu: "500m"
-            memory: "500Mi"
-        env:
-          - name: AGH_CONFIG
-            valueFrom:
-              configMapKeyRef:
-                name: adguard-config
-                key: AdGuardHome.yaml
+            memory: "300Mi"
+            cpu: "400m"
         ports:
           - containerPort: 53 #dns
             name: dns
             protocol: UDP
-          - containerPort: 3000 #initial setup
-            name: http-initial
+#          - containerPort: 3000 #initial setup
+#            name: http-initial
           - containerPort: 80 #web gui
             name: http
             protocol: TCP
